@@ -1,7 +1,9 @@
 import { reqGetDetailList, reqAddOrUpdateShopCart } from "@/Api"
-
+import { getUUID } from '@/utils/uuid_token'
 const state = {
-    detailList: {}
+    detailList: {},
+    // 游客的临时身份
+    uuid_token: getUUID()
 }
 const mutations = {
     GETDETAAILLIST(state, detailList) {
