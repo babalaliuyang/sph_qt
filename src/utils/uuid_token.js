@@ -5,7 +5,7 @@ export const getUUID = () => {
     if (!uuid_token) {
         uuid_token = uuidv4()
         localStorage.setItem('UUIDTOKEN', uuid_token)
-    }
+    } 阿斯顿发顺丰
 
     return uuid_token
 }
