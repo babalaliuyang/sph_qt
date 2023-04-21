@@ -1,7 +1,7 @@
 import { reqCartList } from "@/Api";
 
 const state = {
-    cartList: {},
+    cartList: [],
     // uuid_token: uuid()
 }
 const mutations = {
@@ -18,7 +18,9 @@ const actions = {
     }
 }
 const getters = {
-
+    cartList(state) {
+        return state.cartList[0].cartInfoList || []
+    }
 }
 
 export default {
