@@ -52,3 +52,5 @@ export const reqCartList = () => {
         data: {}
     })
 }
+// 删除购物车产品的接口
+export const reqDeleteCartById = (skuId) => requests({ url: `/cart/deleteCart/${skuId}`, method: 'delete' })

@@ -1,4 +1,4 @@
-import { reqCartList } from "@/Api";
+import { reqCartList, reqDeleteCartById } from "@/Api";
 
 const state = {
     cartList: [],
@@ -7,13 +7,21 @@ const state = {
 const mutations = {
     CARTLIST(state, cartList) {
         state.cartList = cartList
-    }
+    },
 }
 const actions = {
     async CartList({ commit }) {
         let result = await reqCartList()
         if (result.code == 200) {
             commit('CARTLIST', result.data)
+        }
+    },
+    async DeleteCartById({ commit }, skuId) {
+        let result = await reqDeleteCartById(skuId)
+        if (result.code == 200) {
+            return 'ok'
+        } else {
+            return Promise.reject(new Error('faile'))
         }
     }
 }

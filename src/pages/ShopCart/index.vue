@@ -55,7 +55,7 @@
             <span class="sum">{{ item.cartPrice * item.skuNum }}</span>
           </li>
           <li class="cart-list-con7">
-            <a href="#none" class="sindelet">删除</a>
+            <a class="sindelet" @click="deleteCartById(item.skuId)">删除</a>
             <br />
             <a href="#none">移到收藏</a>
           </li>
@@ -108,7 +108,12 @@ export default {
       } else if (e == 1) {
         num = 1;
       } else {
-        num = e - num;
+        console.log(e);
+        if (isNaN(e) || e < 1) {
+          num = 0;
+        } else {
+          num = parseInt(e) - num;
+        }
       }
       try {
         console.log(id, num);
@@ -121,6 +126,15 @@ export default {
         console.log(123);
       }
     },
+    async deleteCartById(skuId) {
+      try {
+        // console.log(skuId);
+        await this.$store.dispatch("DeleteCartById", skuId)
+        this.getData()
+      } catch (error) {
+        alert(error.message)
+      }
+    }
   },
   computed: {
     ...mapGetters(["cartList"]),
