@@ -74,7 +74,7 @@
 
 <script>
 import { mapState } from "vuex";
-// import throttle from 'lodash/throttle'
+import throttle from 'lodash/throttle'
 export default {
   name: "TypeNav",
   data() {  
@@ -102,10 +102,10 @@ export default {
     }),
   },
   methods: {
-    changeIndex(index) {
+    changeIndex:throttle(function(index) {
       this.currentIndex = index;
       console.log(this.currentIndex);
-    },
+    },20),
     leaveShow() {
       this.currentIndex = -1;
       if (this.$route.path != "/home") {
