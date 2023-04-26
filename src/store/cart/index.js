@@ -36,7 +36,7 @@ const actions = {
 }
 const getters = {
     cartList(state) {
-        return state.cartList[0].cartInfoList || []
+        return state.cartList[0] || []
     }
 }
 

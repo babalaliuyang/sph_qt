@@ -11,7 +11,7 @@
         <div class="cart-th6">操作</div>
       </div>
       <div class="cart-body">
-        <ul class="cart-list" v-for="item in cartList" :key="item.id">
+        <ul class="cart-list" v-for="item in list" :key="item.id">
           <li class="cart-list-con1">
             <input
               type="checkbox"
@@ -160,7 +160,7 @@ export default {
     },
     deleteIsChecked() {
       console.log('delete');
-      this.cartList.forEach((item) => {
+      this.list.forEach((item) => {
         if (item.isChecked == 1) {
           this.deleteCartById(item.skuId);
         }
@@ -168,10 +168,10 @@ export default {
     },
     allChecked() {
       // console.log(123);
-      let isAllChecked = this.cartList.every((item) => item.isChecked == 1);
-      this.cartList.forEach((item) => {
-        console.log(1);
-       if (this.cartList.length>0) {
+      let isAllChecked = this.list.every((item) => item.isChecked == 1);
+      this.list.forEach((item) => {
+        // console.log(1);
+       if (this.list.length>0) {
         if (isAllChecked != true) {
           if (item.isChecked == 0) {
             this.updataChecked(item.skuId, item.isChecked);
@@ -185,11 +185,15 @@ export default {
   },
   computed: {
     ...mapGetters(["cartList"]),
+    list() {
+      // console.log(this.cartList);
+      return this.cartList.cartInfoList || []
+    },
     // 计算总价
     totalPrice() {
       let sum = 0;
       // console.log(this.cartList.length);
-      this.cartList.forEach((item, index) => {
+      this.list.forEach((item, index) => {
         // console.log(item,index);
         if (item.isChecked == 1) {
           sum += item.skuPrice * item.skuNum;
@@ -199,7 +203,7 @@ export default {
     },
     isAllChecked() {
       // console.log(this.cartList.every((item) => item.isChecked == 1));
-      return this.cartList.every((item) => item.isChecked == 1);
+      return this.list.every((item) => item.isChecked == 1);
     },
   },
 };
