@@ -92,6 +92,7 @@ export default {
         phone &&
           password &&
           (await this.$store.dispatch("UserLogin", { phone, password }));
+          this.$router.push('/home')
       } catch (error) {
         alert(error.message);
       }
