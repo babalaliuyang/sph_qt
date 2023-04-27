@@ -39,7 +39,7 @@
                 <span class="forget">忘记密码？</span>
               </div>
               <button class="btn" @click.prevent="userLogin">
-                555登&nbsp;&nbsp;录
+               登&nbsp;&nbsp;录
               </button>
             </form>
 
@@ -91,8 +91,9 @@ export default {
         const { phone, password } = this;
         phone &&
           password &&
-          (await this.$store.dispatch("UserLogin", { phone, password }));
-          this.$router.push('/home')
+          await this.$store.dispatch("UserLogin", { phone, password });
+          phone &&
+          password && this.$router.push('/home')
       } catch (error) {
         alert(error.message);
       }
@@ -100,7 +101,7 @@ export default {
   },
 };
 </script>
-
+ 
 <style lang="less" scoped>
 .login-container {
   .login-wrap {

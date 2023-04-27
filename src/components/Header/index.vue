@@ -5,11 +5,15 @@
       <div class="container">
         <div class="loginList">
           <p>尚品汇欢迎您！</p>
-          <p>
+          <p v-if="!userName">
             <span>请</span>
             <!-- 声明式导航：务必要有to属性 -->
             <router-link to="/login">登录</router-link>
             <router-link to="/register" class="register">免费注册</router-link>
+          </p>
+          <p v-else>
+            <a>{{ userName }}</a>
+            <a class="register" @click="logout">退出登录</a>
           </p>
         </div>
         <div class="typeList">
@@ -60,11 +64,11 @@ export default {
       keyword: "",
     };
   },
-  mounted(){
+  mounted() {
     // 通过全局事件总线清除关键字
-    this.$bus.$on('clear',() => {
-      this.keyword = ''
-    })
+    this.$bus.$on("clear", () => {
+      this.keyword = "";
+    });
   },
   methods: {
     // 搜索按钮的回调函数，需要search酷游进行跳转
@@ -79,15 +83,15 @@ export default {
 
       // 第三种：对象  需要在router中给对应路由设置属性
       // push函数生成的是promise对象
-      
-        let location = {name:'search',params:{ keyword: this.keyword || undefined }}
-        location.query = this.$route.query
 
-        this.$router.push(location);
-    
-      
+      let location = {
+        name: "search",
+        params: { keyword: this.keyword || undefined },
+      };
+      location.query = this.$route.query;
 
-      
+      this.$router.push(location);
+
       // *******************************************************************************************
       // 面试题1：路由传递参数（对象写法）path是否可以结合params参数一起使用
       // 答：路由跳转传参的时候，对象的写法可以是name、path形式，但是需要注意的是，path这种写法不能与params参数一起使用
@@ -96,6 +100,19 @@ export default {
       // 2.如何指定params参数可传可不传？
       // 答：如果路由
       // this.$router.push({name:'search',query:{k:this.keyword.toUpperCase()}})
+    },
+    async logout() {
+      try {
+        await this.$store.dispatch("userLogout");
+        this.$router.push("/home");
+      } catch (error) {
+        alert(error.message)
+      }
+    },
+  },
+  computed: {
+    userName() {
+      return this.$store.state.user.userInfo.name;
     },
   },
 };

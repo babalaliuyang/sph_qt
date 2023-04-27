@@ -64,3 +64,5 @@ export const reqUserRegister = (data) => requests({ url: '/user/passport/registe
 export const reqUserLogin = (data) => requests({ url: '/user/passport/login', data, method: 'post' })
 // 获取用户信息  需要带着用户的token
 export const reqUserInfo = () => requests({ url: 'user/passport/auth/getUserInfo', method: 'get' })
+// 退出登录
+export const reqLogout = () => requests({ url: '/user/passport/logout', method: 'get' })

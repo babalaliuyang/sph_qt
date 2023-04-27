@@ -33,7 +33,7 @@ export default {
     // 派发action：通过Vuex发起ajax请求，将数据存储到仓库当中
     this.$store.dispatch("getFloorList");
     // 获取用户信息在首页展示
-    this.$store.dispatch('getUserInfo');
+    // this.$store.dispatch('getUserInfo');
   },
   computed: {
     ...mapState({

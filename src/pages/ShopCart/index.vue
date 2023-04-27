@@ -109,8 +109,6 @@ export default {
     },
     // 节流阀，脚手架自带的
     handler: throttle(async function (e, id, num) {
-      // console.log(e, id, num);
-      // let skuNum = 0
       if (e == -1) {
         num = num > 1 ? -1 : 0;
       } else if (e == 1) {

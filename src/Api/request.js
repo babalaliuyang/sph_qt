@@ -26,8 +26,9 @@ requests.interceptors.request.use((config) => {
         config.headers.userTempId = store.state.detail.uuid_token
     }
     // 请求头携带token
-    if (store.state.user.token) {
-        config.headers.token = store.state.user.token
+    let token = localStorage.getItem('token')
+    if (token) {
+        config.headers.token = token
     }
     nProgress.start();
     return config
