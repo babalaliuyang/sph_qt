@@ -37,16 +37,13 @@ router.beforeEach(async (to, from, next) => {
     // ro:可以获取到你要跳转到那个路由
     // from:可以获取到你从那个路由而来的信息
     // next:放行函数  next() 全放行  next(path) 放行指定的路由 next(false) 此路不通，原路返回
-    // console.log('1', to);
-    // console.log('2', from);
-    // console.log('3', next);
-    // next()
+
     console.log(store);
     let token = localStorage.getItem('token')
     let name = store.state.user.userInfo.name
     console.log('1', name);
     if (token) {
-        // 一登陆
+        // 登陆
         if (to.path == '/login') {
             next('/')
         } else {
