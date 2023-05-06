@@ -127,7 +127,7 @@ export default {
           skuId: id,
           skuNum: num,
         });
-        this.getData();
+        this.getData();   
       } catch (error) {
         console.log(123);
       }
@@ -200,7 +200,7 @@ export default {
       return sum;
     },
     isAllChecked() {
-      // console.log(this.cartList.every((item) => item.isChecked == 1));
+      // console.log(this.cartList.every((item) => item.isChecked == 1));=
       return this.list.every((item) => item.isChecked == 1);
     },
   },
