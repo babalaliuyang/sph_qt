@@ -34,7 +34,7 @@ let router = new VueRouter({
 })
 // 全局守卫：前置守卫（在路由跳转之间进行判断
 router.beforeEach(async (to, from, next) => {
-    // ro:可以获取到你要跳转到那个路由
+    // to:可以获取到你要跳转到那个路由
     // from:可以获取到你从那个路由而来的信息
     // next:放行函数  next() 全放行  next(path) 放行指定的路由 next(false) 此路不通，原路返回
 
