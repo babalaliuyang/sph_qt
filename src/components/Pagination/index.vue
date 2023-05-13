@@ -70,6 +70,7 @@ export default {
       let start = 0,
         end = 0;
       if (continues > totalPage) {
+        
         start = 1;
         end = totalPage;
       } else {
@@ -83,6 +84,7 @@ export default {
           start = totalPage - continues + 1;
           end = totalPage;
         }
+        
       }
       return { start, end };
     },
